@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 18:11:54 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/12 16:43:46 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/12 18:17:41 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 typedef struct s_libft
 {
 	void			*content;
-	struct s_node	*next;
+	struct s_libft	*next;
 }					t_list;
 
 typedef struct s_gnl
 {
 	char			data;
-	struct s_node	*next;
+	struct s_gnl	*next;
 }					t_gnl;
 
 typedef struct s_itoa_base
