@@ -6,13 +6,14 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 18:11:54 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/12 18:17:41 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/12 18:30:35 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <stdarg.h>
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -108,5 +109,17 @@ int					ft_split_char(const char *c, t_gnl **main_list);
 void				ft_add_caracter(t_gnl **main_list, char character);
 void				ft_extract_line(t_gnl **list_of_char, char **line,
 						int counter);
+int					ft_printf(const char *string, ...);
+int					tratament_flags_advanced(char chr, int *index);
+int					tratament_flags(char chr, va_list args, int flag);
+int					flag_c(va_list args);
+int					flag_percent(void);
+int					flag_s(va_list args);
+int					flag_di(va_list args, int flag);
+int					flag_u(va_list args, int flag);
+int					flag_x(va_list args, int flag);
+int					flag_x2(va_list args, int flag);
+int					flag_p(va_list args);
+int					flag_space(void);
 
 #endif
