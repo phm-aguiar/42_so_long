@@ -6,98 +6,138 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:14:25 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/23 18:47:22 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/24 19:02:09 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	iniciate_struct(len_line)
+bool	ft_error(char *msg)
+{
+	ft_printf("Error\n%s\n", msg);
+	return (false);
+}
+void	iniciate_struct(int len_line, int lines)
 {
 	t_map	map;
 
 	map.dimentions.len_map_x = len_line - 1;
-	map.dimentions.len_map_y = 0;
+	map.dimentions.len_map_y = lines;
 	map.recurses.player = 0;
 	map.recurses.collectibles = 0;
 	map.recurses.exit = 0;
 	map.recurses.wall = 0;
 }
 
-bool	validate_dimentions(char *line, int len_line)
+bool	validate_width(char **map)
 {
-	printf("len_line = %d\n", len_line);
-	printf("ft_strlen(line) = %zu\n", ft_strlen(line));
-	printf("line = %s\n", line);
-	if (ft_strlen(line) == len_line)
-		return (true);
-	else
-		return (false);
-}
+	int	i;
+	int	len;
 
-// bool	validate_recurses_map(char *line)
-// {
-// 	int		i;
-// 	t_map	map;
-
-// 	i = 0;
-// 	while (line[i])
-// 	{
-// 		if (line[i] == 'P')
-// 			map.recurses.player++;
-// 		if (line[i] == 'C')
-// 			map.recurses.collectibles++;
-// 		if (line[i] == 'E')
-// 			map.recurses.exit++;
-// 		if (line[i] == '1')
-// 			map.recurses.wall++;
-// 		i++;
-// 	}
-// 	if (map.recurses.player != 1 || map.recurses.collectibles < 1
-// 		|| map.recurses.exit != 1 || map.recurses.wall < 1)
-// 		return (false);
-// 	else
-// 		return (true);
-// }
-
-bool	validate_line(char *msg, int len_line)
-{
-	int	index;
-
-	index = 0;
-	while (index < len_line)
+	i = 0;
+	len = ft_strlen(map[0]);
+	if (len < 3)
 	{
-		if (ft_strchr(PERMITED_CHARS, msg[index]) == NULL)
+		ft_error("Invalid map width");
+		return (false);
+	}
+	while (map[i])
+	{
+		if (ft_strlen(map[i]) != len)
+		{
+			ft_error("Invalid map width");
 			return (false);
-		index++;
+		}
+		i++;
 	}
+	iniciate_struct(len, i);
 	return (true);
 }
 
-bool	tratament_file(char *argv)
+bool	validate_empty_map(char **map)
 {
-	t_map	map;
-	int		fd;
-	int		len_line;
-	char	*line;
-
-	fd = open(argv, O_RDONLY);
-	if (fd < 0)
-		return (false);
-	line = get_next_line(fd);
-	while (line)
+	if (!map[0])
 	{
-		/* code */
+		ft_error("Empty map");
+		return (false);
 	}
-
-	if (!validate_line(line, len_line))
-		return (false);
-	if (!validate_dimentions(line, len_line))
-		return (false);
-	if (!validate_recurses_map(line))
-		return (false);
-	map.dimentions.len_map_y++;
 	return (true);
+}
+void	increment_map(char c ,t_map	map)
+{
+	if (c == 'P')
+		map.recurses.player++;
+	if (c == 'C')
+		map.recurses.collectibles++;
+	if (c == 'E')
+		map.recurses.exit++;
+	if (c == '1')
+		map.recurses.wall++;
+}
+
+bool	validate_elements(char **map)
+{
+	int		i;
+	int		j;
+	t_map	elements;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (!ft_strchr(PERMITED_CHARS, map[i][j]))
+			{
+				ft_error("Invalid permited map elements ");
+				return (false);
+			}
+			else
+				increment_map(map[i][j], elements);
+			j++;
+		}
+		i++;
+	}
+	if (elements.recurses.player != 1 || elements.recurses.collectibles < 1
+		|| elements.recurses.exit != 1 || elements.recurses.wall < 1)
+		return (false);
+	return (true);
+}
+bool	validate_map(char **map,t_map map_file)
+{
+	if (!validate_empty_map(map))
+		return (false);
+	if (!validate_elements(map, map_file))
+		return (false);
+	if (!validate_width(map))
+		return (false);
+	return (true);
+}
+
+char	**make_map(char *path)
+{
+	int		fd;
+	char	*line;
+	char	*tmp;
+	char **map;
+
+	line = ft_strdup("");
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_error("Invalid file");
+		return (NULL);
+	}
+	tmp = get_next_line(fd);
+	while (tmp != NULL)
+	{
+		line = ft_strjoin(line, tmp);
+		free(tmp);
+		tmp = get_next_line(fd);
+	}
+	map = ft_split(line, '\n');
+	free(line);
+	return (map);
 }
 
 bool	validate_argv(char *argv)
@@ -114,10 +154,18 @@ bool	validate_argv(char *argv)
 	}
 	return (false);
 }
-bool	ft_error(char *msg)
+void	map_checker(char *path)
 {
-	ft_printf("Error\n%s\n", msg);
-	return (false);
+	t_map	map;
+
+	map.map_file.map = make_map(path);
+	if (!map.map_file.map)
+	{
+		if (!ft_error("Invalid file"))
+			return ;
+	}
+	if (!validate_map(map.map_file.map))
+			return ;
 }
 
 int	main(int argc, char **argv)
@@ -132,9 +180,6 @@ int	main(int argc, char **argv)
 		if (!ft_error("Invalid file extension"))
 			return (0);
 	}
-	if (!tratament_file(argv[1]))
-	{
-		if (!ft_error("Invalid map"))
-			return (0);
-	}
+	map_checker(argv[1]);
+	printf("Valid map\n");
 }

@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:24:20 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/19 18:04:40 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:36:03 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ bool	validate_recurses_map(char *line)
 	if (map.recurses.player != 1 || map.recurses.collectibles < 1
 		|| map.recurses.exit != 1 || map.recurses.wall < 1)
 		return (false);
-	else
+	elsez
 		return (true);
 }
 
@@ -125,5 +125,5 @@ int	map_validation(char *argv)
 		free(line);
 		line = get_next_line(fd);
 	}
-	
+
 }
