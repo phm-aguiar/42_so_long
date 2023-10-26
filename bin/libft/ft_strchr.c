@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 08:22:16 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/09/07 15:38:42 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/26 16:10:10 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char	*ft_strchr(const char *s, int c)
 {
+	if(s == NULL)
+		return (NULL);
 	while (*s)
 	{
 		if (*s == (unsigned char)c)

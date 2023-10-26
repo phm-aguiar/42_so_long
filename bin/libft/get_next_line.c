@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:20:07 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/12 16:44:25 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/26 15:42:29 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (ft_read_the_file(fd, &main_list) && !main_list)
 		return (NULL);
-	counter = ft_sizelst(&main_list);
+	counter = ft_sizelst(&main_list, '\n');
 	line = malloc(counter + 1);
 	if (!line)
 	{

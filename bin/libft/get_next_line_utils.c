@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:22:45 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/12 16:44:17 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/26 15:43:05 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ int	ft_read_error(t_gnl **main_list, char *current)
 	return (1);
 }
 
-int	ft_sizelst(t_gnl **list_of_char)
+int	ft_sizelst(t_gnl **list_of_char, char c)
 {
 	t_gnl	*size;
 	int		counter;
 
 	size = *list_of_char;
 	counter = 1;
-	while (size != NULL && size->data != '\n')
+	while (size != NULL && size->data != c)
 	{
 		counter++;
 		size = size->next;

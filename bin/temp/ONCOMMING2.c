@@ -6,17 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:14:25 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/25 20:05:16 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:02:08 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-
-enum e_bool
-{
-	FALSE,
-	TRUE
-};
 
 void	debugger(t_map *teste)
 {
@@ -136,7 +130,7 @@ int	validate_elements(t_map *elements)
 		{
 			if (!ft_strchr(PERMITED_CHARS, elements->map_file.map[i][j]))
 			{
-				ft_error("Invalid permited map elements ");
+				// ft_error("Invalid permited map elements ");
 				return (0);
 			}
 			else
@@ -179,9 +173,11 @@ char	**make_map(char *path)
 {
 	int		fd;
 	char	line[4096];
-	int	tmp;
+	int		tmp;
 	char	**map;
+	int		i;
 
+	i = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{

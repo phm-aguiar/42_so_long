@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 18:11:54 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/18 11:00:41 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/26 15:13:10 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 # endif
 
 // STRUCTS LIBFT
-typedef struct s_libft
+typedef struct s_bonus
 {
 	void			*content;
-	struct s_libft	*next;
+	struct s_bonus	*next;
 }					t_list;
 
 typedef struct s_itoa_base
@@ -35,6 +35,14 @@ typedef struct s_itoa_base
 	size_t			len;
 	int				len_base;
 }					t_variables;
+
+typedef struct s_split
+{
+	char			**s_string;
+	int				len_subs;
+	int				i;
+}					t_var;
+
 
 // STRUCTS GNL
 
@@ -121,7 +129,7 @@ int					ft_pow(int nb, int power);
 
 // FUNCTIONS GNL LIBFT
 char				*get_next_line(int fd);
-int					ft_sizelst(t_gnl **list_of_char);
+int					ft_sizelst(t_gnl **list_of_char, char c);
 int					ft_read_error(t_gnl **main_list, char *current);
 void				ft_start_gnl(t_gnl **caracter, char c);
 void				ft_wipe_list(t_gnl **list_of_char, int counter);

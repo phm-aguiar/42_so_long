@@ -1,80 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_lst.c                                     :+:      :+:    :+:   */
+/*   ft_split_lst-ONCOMING.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 11:57:25 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/16 13:25:25 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/26 15:21:14 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*extract_lines(t_gnl **main_list)
+static int	ft_count_subs(char const *s, char c)
 {
-	int		i;
-	char	*line;
-	int		idx;
+	int	i;
+	int	count;
 
-	i = ft_sizelst(main_list);
-	line = malloc(sizeof(char) * (i + 1));
-	if (line == NULL)
-		return (NULL);
-	idx = 0;
-	while (idx < i)
-	{
-		line[idx] = (*main_list)->data;
-		*main_list = (*main_list)->next;
-		idx++;
-	}
-	line[idx] = '\0';
-	ft_wipe_list(main_list, -1);
-	return (line);
-}
-
-char	**ft_split_lst(char const *s, char c)
-{
-	t_gnl	*main_list;
-	char	**words;
-	int		i;
-	int		idx;
-
-	i = ft_count_words(s, c);
-	words = malloc(sizeof(char *) * (i + 1));
-	if (words == NULL)
-		return (NULL);
-	while (*s)
-	{
-		if (*s == c)
-		{
-			words[idx] = extract_lines(&main_list);
-			idx++;
-			s++;
-			continue ;
-		}
-		ft_add_caracter(&main_list, *s);
-		s++;
-	}
-	words[idx] = extract_lines(&main_list);
-	words[idx + 1] = NULL;
-	return (words);
-}
-
-#include <stdio.h>
-
-int	main(void)
-{
-	char	**kekw;
-	int		i;
-
-	kekw = ft_split_lst("oloco    bixo", ' ');
 	i = 0;
-	while (kekw[i])
+	count = 0;
+	if (s[i] != c && s[i])
+		count++;
+	while (s[i])
 	{
-		printf("%s", kekw[i]);
+		if (s[i] == c && s[i + 1] != c && s[i + 1])
+			count++;
 		i++;
 	}
-	return (1);
+	return (count);
+}
+
+char	**split_lst(const char *s, char c)
+{
+	t_gnl	*lst;
+	char	**strs;
+	int		i;
+	int		counter;
+
+	lst = NULL;
+	i = ft_count_subs(s, c);
+	strs = (char **)malloc(sizeof(char *) * (i + 1));
+	if (!strs)
+		return (NULL);
+	while (*s == c)
+		s++;
+	ft_split_char(s, &lst);
+	while ()
+	{
+		/* code */
+	}
+	
+	counter = ft_sizelst(&lst, '\n');
+	strs[i] = NULL;
+	if (!s)
+		return (NULL);
+	while (*s == c)
+		s++;
 }
