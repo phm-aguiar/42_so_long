@@ -1,15 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ONCOMMING3.c                                       :+:      :+:    :+:   */
+/*   ft_matrixlen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 17:14:25 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/26 16:27:51 by phenriq2         ###   ########.fr       */
+/*   Created: 2023/10/27 15:44:40 by phenriq2          #+#    #+#             */
+/*   Updated: 2023/10/27 15:47:56 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "libft.h"
 
+int ft_matrixlen(char **matrix)
+{
+	int i;
 
+	i = 0;
+	while (matrix[i])
+		i++;
+	return (i);
+}

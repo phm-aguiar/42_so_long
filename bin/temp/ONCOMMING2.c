@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:14:25 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/26 17:02:08 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:01:51 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	validate_empty_map(char **map)
 	}
 	return (1);
 }
-int	validate_walls(t_map *map)
+bool	validate_walls(t_map *map)
 {
 	int	j;
 	int	k;
@@ -92,17 +92,17 @@ int	validate_walls(t_map *map)
 		while (map->map_file.map[j][k])
 		{
 			if (map->map_file.map[0][k] != '1')
-				return (0);
+				return (FALSE);
 			else if (map->map_file.map[j][0] != '1' ||
 						map->map_file.map[j][x - 1] != '1')
-				return (0);
+				return (FALSE);
 			else if (map->map_file.map[y - 1][k] != '1')
-				return (0);
+				return (FALSE);
 			k++;
 		}
 		j++;
 	}
-	return (1);
+	return (TRUE);
 }
 
 void	increment_map(char c, t_map *map)

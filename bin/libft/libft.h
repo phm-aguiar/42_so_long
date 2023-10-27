@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 18:11:54 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/26 15:13:10 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:03:36 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_split
 	int				len_subs;
 	int				i;
 }					t_var;
-
 
 // STRUCTS GNL
 
@@ -126,6 +125,8 @@ size_t				ft_nbrlen(long int nbr);
 size_t				ft_nbrlen_base(long int nbr, int len_base);
 int					ft_sqrt(int nb);
 int					ft_pow(int nb, int power);
+int					ft_matrixlen(char **matrix);
+void				ft_matrixdel(char **matrix);
 
 // FUNCTIONS GNL LIBFT
 char				*get_next_line(int fd);

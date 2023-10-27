@@ -13,7 +13,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_flags_base.c ft_flags.c ft_isalnum.c\
 				ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnew.c\
 				ft_strnstr.c ft_strrchr.c ft_strrev.c ft_strtrim.c ft_substr.c\
 				ft_tolower.c ft_toupper.c ft_tratament_flags.c get_next_line.c\
-				get_next_line_utils.c ft_sqrt.c ft_pow.c
+				get_next_line_utils.c ft_sqrt.c ft_pow.c ft_matrixlen.c ft_matrixdel.c\
 
 
 OBJS = $(SRCS:.c=.o)
