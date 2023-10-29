@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:08:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/27 16:32:52 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:32:14 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	arg_cheker(char *path, t_sl *sl)
 {
-	while (path[sl->commom_variables.index])
+	while (path[sl->vars.index])
 	{
-		if (path[sl->commom_variables.index] == '.'
-			&& path[sl->commom_variables.index + 1] == 'b'
-			&& path[sl->commom_variables.index + 2] == 'e'
-			&& path[sl->commom_variables.index + 3] == 'r'
-			&& path[sl->commom_variables.index + 4] == '\0')
+		if (path[sl->vars.index] == '.'
+			&& path[sl->vars.index + 1] == 'b'
+			&& path[sl->vars.index + 2] == 'e'
+			&& path[sl->vars.index + 3] == 'r'
+			&& path[sl->vars.index + 4] == '\0')
 		{
-			sl->commom_variables.index = 0;
-			sl->commom_variables.path = path;
+			sl->vars.index = 0;
+			sl->vars.path = path;
 			return ;
 		}
-		sl->commom_variables.index++;
+		sl->vars.index++;
 	}
-	sl->commom_variables.index = 0;
+	sl->vars.index = 0;
 	ft_error("Invalid file extension", sl);
 }

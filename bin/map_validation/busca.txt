@@ -1,0 +1,14 @@
+estou fazendo um validador de mapas na linguagem C
+meu usuario passa o caminho para o mapa por argumento
+eu valido que so foi passado 1 caminho e que meu arquivo termina com .ber 
+depois eu abro o arquivo com open
+leio o arquivo todo e coloco numa string
+faço o split dela e coloco numa variavel char **mapa
+esse map eu verifico se ele é um retangulo
+verifico se ele possui apenas os caracteres CEP10 onde C = coletavel E = saida P = personagem 1 = parede 0 = caminho
+verifico se existe apenas um C e um P no mapa
+verifico se as laterais do retangulo sao formados de 1
+
+e agora quero verificar se existe um caminho possivel para o personagem pegar todos os coletaveis e chegar na saida, para isso eu quero usar o algoritmo A* para fazer isso
+no processo eu quero aprender sobre grafos e algoritmos de busca
+poderia me mostrar como fazer isso me explicando passo a passo? 
