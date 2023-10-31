@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:33:26 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/29 14:32:14 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:23:48 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_if_matrix_is_rectangle(t_sl *sl)
 		sl->vars.k = 0;
 		sl->vars.j++;
 	}
-	sl->vars.choice = 0;
-	if (sl->vars.index != area)
-		ft_error("Map is not a rectangle", sl);
+	sl->vars.choice = -40;
+	if (sl->vars.index != area || area < 15)
+		ft_error("Map is not a valide rectangle", sl);
 }

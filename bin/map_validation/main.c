@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:33:30 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/29 18:09:00 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:51:54 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	main(int argc, char **argv)
 	iniciate_variables_collectables(&sl);
 	arg_cheker(argv[1], &sl);
 	map_maker(&sl);
-	sl.vars.choice = -40;
-	ft_error("Invalid map", &sl);
+	sl.vars.choice = -41;
+	ft_error("tudo certo", &sl);
 }

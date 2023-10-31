@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:14:25 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/29 14:32:14 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/10/31 20:32:56 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,6 @@ void	iniciate_variables_collectables(t_sl *sl)
 	sl->vars.index = 0;
 	sl->vars.choice = 0;
 	sl->vars.bytes_read = 0;
+	sl->open = NULL;
+	sl->closed = NULL;
 }
