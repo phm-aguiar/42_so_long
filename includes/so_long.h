@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 12:28:56 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/29 14:34:02 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:32:33 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	iniciate_variables_collectables(t_sl *sl);
 void	arg_cheker(char *path, t_sl *sl);
 void	map_maker(t_sl *sl);
 void	check_if_matrix_is_rectangle(t_sl *sl);
-void	create_graph_from_map(char **map, int height, int width, t_sl *sl);
+int		check_path_validation(t_sl *sl, int y, int x);
 
 #endif
