@@ -6,11 +6,52 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:14:25 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/03 10:50:30 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:24:03 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../includes/includes_and_defines_so_long.h"
+
+void	validate_map(t_sl *sl)
+{
+	check_if_matrix_is_rectangle(sl);
+	check_content(sl);
+	check_edges_walls(sl);
+	full_floodfill(sl->map_file.mapcpy, sl->vars.start_y, sl->vars.start_x);
+	verify_path_ok(sl, sl->map_file.mapcpy);
+}
+
+void	find_player(t_sl *sl, int y, int x)
+{
+	sl->recurses.player++;
+	sl->vars.start_y = y;
+	sl->vars.start_x = x;
+}
+
+void	ft_error(char *str, t_sl *sl)
+{
+	if (sl->vars.choice == -40)
+	{
+		ft_printf("Error\n%s", str);
+		ft_matrixdel(sl->map_file.map);
+		ft_matrixdel(sl->map_file.mapcpy);
+		exit(EXIT_SUCCESS);
+	}
+	if (sl->vars.choice == -41)
+	{
+		ft_printf("\n%s", str);
+		ft_matrixdel(sl->map_file.map);
+		ft_matrixdel(sl->map_file.mapcpy);
+		exit(EXIT_SUCCESS);
+	}
+	ft_printf("Error\n%s: ", str);
+	if (sl->vars.choice == -42)
+	{
+		close(sl->vars.fd);
+		perror("");
+	}
+	exit(EXIT_FAILURE);
+}
 
 void	map_maker(t_sl *sl)
 {

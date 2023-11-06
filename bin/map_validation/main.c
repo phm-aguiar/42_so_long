@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:33:30 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/02 17:35:28 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/06 15:59:43 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../includes/includes_and_defines_so_long.h"
 
 int	main(int argc, char **argv)
 {
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		ft_error("Invalid number of arguments", &sl);
-	iniciate_variables_collectables(&sl);
+	initiate_variables_collectables(&sl);
 	arg_cheker(argv[1], &sl);
 	map_maker(&sl);
 	sl.vars.choice = -41;

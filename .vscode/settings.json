@@ -1,5 +1,7 @@
 {
 	"files.associations": {
-		"so_long.h": "c"
+		"so_long.h": "c",
+		"includes_and_defines_so_long.h": "c",
+		"functions_so_long.h": "c"
 	}
 }

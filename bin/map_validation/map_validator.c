@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:33:26 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/03 10:50:42 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/06 12:07:35 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../includes/includes_and_defines_so_long.h"
 
 void	check_if_matrix_is_rectangle(t_sl *sl)
 {
@@ -33,13 +33,6 @@ void	check_if_matrix_is_rectangle(t_sl *sl)
 	sl->vars.choice = -40;
 	if (sl->vars.index != area || area < 15)
 		ft_error("Map is not a valide rectangle", sl);
-}
-
-void	find_player(t_sl *sl, int y, int x)
-{
-	sl->recurses.player++;
-	sl->vars.start_y = y;
-	sl->vars.start_x = x;
 }
 
 void	verify_path_ok(t_sl *sl, char **map)
@@ -126,12 +119,4 @@ void	check_content(t_sl *sl)
 	if (sl->recurses.player != 1 || sl->recurses.exit != 1
 		|| sl->recurses.collectibles < 1)
 		ft_error("Invalid recurses map", sl);
-}
-
-void	validate_map(t_sl *sl)
-{
-	check_if_matrix_is_rectangle(sl);
-	check_content(sl);
-	check_edges_walls(sl);
-	full_floodfill(sl->map_file.mapcpy, sl->vars.start_y, sl->vars.start_x);
 }
