@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:14:25 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/06 14:24:03 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/07 18:08:33 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ void	validate_map(t_sl *sl)
 	verify_path_ok(sl, sl->map_file.mapcpy);
 }
 
+void	mlx_error_sl(char *str, int choise, t_sl *sl)
+{
+	sl->vars.choice = choise;
+	mlx_terminate(sl->mlx);
+	ft_error(str, sl);
+}
+
 void	find_player(t_sl *sl, int y, int x)
 {
 	sl->recurses.player++;
@@ -32,19 +39,19 @@ void	ft_error(char *str, t_sl *sl)
 {
 	if (sl->vars.choice == -40)
 	{
-		ft_printf("Error\n%s", str);
+		miniprintf("Error\n%s", str);
 		ft_matrixdel(sl->map_file.map);
 		ft_matrixdel(sl->map_file.mapcpy);
 		exit(EXIT_SUCCESS);
 	}
 	if (sl->vars.choice == -41)
 	{
-		ft_printf("\n%s", str);
+		miniprintf("\n%s", str);
 		ft_matrixdel(sl->map_file.map);
 		ft_matrixdel(sl->map_file.mapcpy);
 		exit(EXIT_SUCCESS);
 	}
-	ft_printf("Error\n%s: ", str);
+	miniprintf("Error\n%s: ", str);
 	if (sl->vars.choice == -42)
 	{
 		close(sl->vars.fd);

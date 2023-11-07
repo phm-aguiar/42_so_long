@@ -40,22 +40,13 @@ int	flag_space(void)
 
 int	flag_u(va_list args, int flag)
 {
-	unsigned int	nbr;
-	char			*number;
-	int				index;
-	int				counter;
+	int	nbr;
+	int		counter;
 
 	counter = 0;
 	if (flag == 2)
 		counter += ft_putchar('+');
-	nbr = va_arg(args, unsigned int);
-	index = 0;
-	number = ft_itoa_unsigned(nbr);
-	while (number[index])
-	{
-		counter += ft_putchar(number[index]);
-		index++;
-	}
-	free(number);
+	nbr = va_arg(args, size_t);
+	counter += ft_putnbr_base(nbr, "0123456789");
 	return (counter);
 }

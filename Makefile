@@ -1,6 +1,6 @@
 run:
 	cd ./bin/map_validation && \
-	cc main.c init.c map_maker.c map_validator.c ../../libft.a ../../libmlx42.a -o "../temp/a.out"
+	cc -Iinclude -ldl -lglfw -pthread -lm main.c miniprintf.c init.c map_maker.c map_validator.c ../../libft.a ../../libmlx42.a -o "../temp/a.out"
 
 valgrind:
 	cd ./bin/map_validation && \
@@ -9,6 +9,7 @@ valgrind:
          --track-origins=yes \
          --verbose \
          --log-file=../temp/valgrind-out.txt \
+         --suppressions=../temp/sup.sup \
           -s ../temp/a.out ../temp/map.ber
 
 .PHONY: run valgrind
