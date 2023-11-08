@@ -10,6 +10,9 @@ valgrind:
          --verbose \
          --log-file=../temp/valgrind-out.txt \
          --suppressions=../temp/sup.sup \
-          -s ../temp/a.out ../temp/map.ber
+          -s ../temp/a.out ../temp/map.ber \
 
-.PHONY: run valgrind
+play:
+	cd ./bin/temp && ./a.out map.ber
+
+.PHONY: run valgrind play teste

@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:08:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/07 18:09:47 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:37:58 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void	initiate_variables_collectables(t_sl *sl)
 	sl->vars.choice = 0;
 	sl->vars.bytes_read = 0;
 	sl->vars.pf_counter = 0;
+	sl->vars.z = 0;
 	sl->vars.hook = 0;
 	sl->mlx = NULL;
+
 }
 
 void	arg_cheker(char *path, t_sl *sl)

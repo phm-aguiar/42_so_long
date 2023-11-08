@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:04:43 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/07 18:30:18 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/08 18:42:42 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define END "E"
 # define COLLECTABLE "C"
 # define PERMITED_CHARS "CEP10"
-# define WIDTH 32
-# define HEIGHT 32
+# define WIDTH 512
+# define HEIGHT 512
 # define ESC MLX_KEY_ESCAPE
 # define UP MLX_KEY_UP
 # define DOWN MLX_KEY_DOWN
@@ -44,7 +44,6 @@
 # define P MLX_PRESS
 # define R MLX_REPEAT
 
-
 // STRUCTS SO_LONG
 
 typedef struct s_commom_vars
@@ -57,6 +56,7 @@ typedef struct s_commom_vars
 	int				i;
 	int				k;
 	int				j;
+	int				z;
 	int				start_x;
 	int				start_y;
 	int				end_x;
@@ -66,6 +66,7 @@ typedef struct s_commom_vars
 }					t_commom_vars;
 
 typedef struct s_map
+
 {
 	char			**map;
 	char			**mapcpy;
@@ -97,6 +98,10 @@ typedef struct s_images
 	mlx_image_t		*floor_img;
 }					t_images;
 
+typedef struct s_image{
+	mlx_texture_t	*texture;
+	mlx_image_t		*image;
+}t_image;
 
 typedef struct s_sl
 {
@@ -104,7 +109,8 @@ typedef struct s_sl
 	t_recurses		recurses;
 	t_commom_vars	vars;
 	mlx_t			*mlx;
-	t_images images;
+	t_images		images;
+	t_image	*image[5];
 }					t_sl;
 
 // FUNCTIONS SO_LONG
@@ -121,5 +127,7 @@ void				ft_error(char *str, t_sl *sl);
 void				arg_cheker(char *path, t_sl *sl);
 void				mlx_error_sl(char *str, int choise, t_sl *sl);
 int					miniprintf(const char *string, ...);
+void				map_creator(t_sl *sl);
+void				floor_all(t_sl *sl, mlx_image_t *img);
 
 #endif
