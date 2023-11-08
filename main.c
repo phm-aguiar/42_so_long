@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/08 18:25:00 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/08 18:59:37 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/includes_and_defines_so_long.h"
+#include "includes/includes_and_defines_so_long.h"
 
 int	modifier_matriz(t_sl *sl, int sx, int sy)
 {

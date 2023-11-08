@@ -1,6 +1,6 @@
 run:
 	cd ./bin/map_validation && \
-	cc -Iinclude -ldl -lglfw -pthread -lm main.c miniprintf.c init.c map_maker.c map_validator.c ../../libft.a ../../libmlx42.a -o "../temp/a.out"
+	cc -Iinclude -ldl -lglfw -pthread -lm ../../main.c miniprintf.c init.c map_maker.c map_validator.c ../../libft.a ../../libmlx42.a -o "../temp/a.out"
 
 valgrind:
 	cd ./bin/map_validation && \

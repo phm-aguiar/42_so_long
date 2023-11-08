@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:04:43 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/08 18:42:42 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/08 19:10:07 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,24 +84,25 @@ typedef struct s_recurses
 	int				wall;
 }					t_recurses;
 
-typedef struct s_images
-{
-	mlx_texture_t	*wall;
-	mlx_image_t		*wall_img;
-	mlx_texture_t	*player;
-	mlx_image_t		*player_img;
-	mlx_texture_t	*collectable;
-	mlx_image_t		*collectable_img;
-	mlx_texture_t	*exit;
-	mlx_image_t		*exit_img;
-	mlx_texture_t	*floor;
-	mlx_image_t		*floor_img;
-}					t_images;
+// typedef struct s_images
+// {
+// 	mlx_texture_t	*wall;
+// 	mlx_image_t		*wall_img;
+// 	mlx_texture_t	*player;
+// 	mlx_image_t		*player_img;
+// 	mlx_texture_t	*collectable;
+// 	mlx_image_t		*collectable_img;
+// 	mlx_texture_t	*exit;
+// 	mlx_image_t		*exit_img;
+// 	mlx_texture_t	*floor;
+// 	mlx_image_t		*floor_img;
+// }					t_images;
 
-typedef struct s_image{
+typedef struct s_image
+{
 	mlx_texture_t	*texture;
 	mlx_image_t		*image;
-}t_image;
+}					t_image;
 
 typedef struct s_sl
 {
@@ -109,8 +110,8 @@ typedef struct s_sl
 	t_recurses		recurses;
 	t_commom_vars	vars;
 	mlx_t			*mlx;
-	t_images		images;
-	t_image	*image[5];
+	// t_images		images;
+	t_image			image[5];
 }					t_sl;
 
 // FUNCTIONS SO_LONG
