@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:04:43 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/08 19:10:07 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:17:28 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define INCLUDES_AND_DEFINES_SO_LONG_H
 
 // includes_and_defines_so_long.h
-# include "../bin/libft/libft.h"
+# include "../src/libft/libft.h"
 # include "MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <limits.h>
@@ -23,7 +23,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WALL INT_MAX
+// DEFINES SO_LONG
 # define EMPTY 0
 # define START "P"
 # define END "E"
@@ -84,19 +84,6 @@ typedef struct s_recurses
 	int				wall;
 }					t_recurses;
 
-// typedef struct s_images
-// {
-// 	mlx_texture_t	*wall;
-// 	mlx_image_t		*wall_img;
-// 	mlx_texture_t	*player;
-// 	mlx_image_t		*player_img;
-// 	mlx_texture_t	*collectable;
-// 	mlx_image_t		*collectable_img;
-// 	mlx_texture_t	*exit;
-// 	mlx_image_t		*exit_img;
-// 	mlx_texture_t	*floor;
-// 	mlx_image_t		*floor_img;
-// }					t_images;
 
 typedef struct s_image
 {
@@ -110,8 +97,7 @@ typedef struct s_sl
 	t_recurses		recurses;
 	t_commom_vars	vars;
 	mlx_t			*mlx;
-	// t_images		images;
-	t_image			image[5];
+	t_image			image[1000];
 }					t_sl;
 
 // FUNCTIONS SO_LONG
@@ -130,5 +116,9 @@ void				mlx_error_sl(char *str, int choise, t_sl *sl);
 int					miniprintf(const char *string, ...);
 void				map_creator(t_sl *sl);
 void				floor_all(t_sl *sl, mlx_image_t *img);
+t_image				image_load(void *mlx, char *path);
+void				load_path(char **path);
+void				all_image(t_sl *set);
+void				counter_wall(t_sl *sl);
 
 #endif

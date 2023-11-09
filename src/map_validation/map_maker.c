@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:14:25 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/07 18:08:33 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:39:19 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,17 @@ void	validate_map(t_sl *sl)
 
 void	mlx_error_sl(char *str, int choise, t_sl *sl)
 {
+	int	i;
+	int	k;
+
+	i = -1;
 	sl->vars.choice = choise;
 	mlx_terminate(sl->mlx);
+	k = 4 + sl->recurses.collectibles;
+	while (++i < k)
+	{
+		mlx_delete_texture(sl->image[i].texture);
+	}
 	ft_error(str, sl);
 }
 
