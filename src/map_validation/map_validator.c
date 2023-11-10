@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:33:26 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/09 15:42:10 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:18:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check_if_matrix_is_rectangle(t_sl *sl)
 		sl->vars.j++;
 	}
 	sl->vars.choice = -40;
-	if (sl->vars.index != area || area < 15)
+	if (sl->vars.index != area || area < 15 || sl->map_file.height*64 >1080 || sl->map_file.width*64 >= 1920)
 		ft_error("Map is not a valide rectangle", sl);
 }
 
@@ -46,7 +46,7 @@ void	verify_path_ok(t_sl *sl, char **map)
 		{
 			if (map[sl->vars.i][sl->vars.j] == 'E'
 				|| map[sl->vars.i][sl->vars.j] == 'C')
-				ft_error("Invalid path", sl);
+				ft_error("Invalid path floodfill", sl);
 			sl->vars.j++;
 		}
 		sl->vars.i++;
@@ -57,11 +57,11 @@ void	full_floodfill(char **map, int y, int x)
 {
 	if (map[y][x] == '1' || map[y][x] == '-')
 		return ;
-	if (map[y][x] == 'E')
-	{
-		map[y][x] = '-';
-		return ;
-	}
+	// if (map[y][x] == 'I')
+	// {
+	// 	map[y][x] = '-';
+	// 	return ;
+	// }
 	map[y][x] = '-';
 	full_floodfill(map, y - 1, x);
 	full_floodfill(map, y + 1, x);
@@ -106,9 +106,9 @@ void	check_content(t_sl *sl)
 							sl->map_file.map[sl->vars.j][sl->vars.k]))
 				ft_error("Invalid character in map", sl);
 			if (sl->map_file.map[sl->vars.j][sl->vars.k] == 'P')
-				find_player(sl, sl->vars.j, sl->vars.k);
+				find_player(sl, sl->vars.j, sl->vars.k, 1);
 			if (sl->map_file.map[sl->vars.j][sl->vars.k] == 'E')
-				sl->recurses.exit++;
+				find_player(sl, sl->vars.j, sl->vars.k, 2);
 			if (sl->map_file.map[sl->vars.j][sl->vars.k] == 'C')
 				sl->recurses.collectibles++;
 			sl->vars.k++;

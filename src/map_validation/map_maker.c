@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:14:25 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/09 17:39:19 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:20:34 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,26 @@ void	mlx_error_sl(char *str, int choise, t_sl *sl)
 	i = -1;
 	sl->vars.choice = choise;
 	mlx_terminate(sl->mlx);
-	k = 4 + sl->recurses.collectibles;
+	k = 4 + sl->recurses.total_key;
 	while (++i < k)
-	{
 		mlx_delete_texture(sl->image[i].texture);
-	}
 	ft_error(str, sl);
 }
 
-void	find_player(t_sl *sl, int y, int x)
+void	find_player(t_sl *sl, int y, int x, int choise)
 {
-	sl->recurses.player++;
-	sl->vars.start_y = y;
-	sl->vars.start_x = x;
+	if (choise == 1)
+	{
+		sl->recurses.player++;
+		sl->vars.start_y = y;
+		sl->vars.start_x = x;
+	}
+	if (choise == 2)
+	{
+		sl->recurses.exit++;
+		sl->vars.end_y = y;
+		sl->vars.end_x = x;
+	}
 }
 
 void	ft_error(char *str, t_sl *sl)

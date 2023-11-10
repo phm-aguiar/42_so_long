@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:04:43 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/09 17:17:28 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/10 13:35:14 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define START "P"
 # define END "E"
 # define COLLECTABLE "C"
-# define PERMITED_CHARS "CEP10"
+# define PERMITED_CHARS "CEPI10"
 # define WIDTH 512
 # define HEIGHT 512
 # define ESC MLX_KEY_ESCAPE
@@ -80,10 +80,10 @@ typedef struct s_recurses
 {
 	int				player;
 	int				collectibles;
+	int				total_key;
 	int				exit;
 	int				wall;
 }					t_recurses;
-
 
 typedef struct s_image
 {
@@ -103,7 +103,7 @@ typedef struct s_sl
 // FUNCTIONS SO_LONG
 void				initiate_variables_collectables(t_sl *sl);
 void				check_if_matrix_is_rectangle(t_sl *sl);
-void				find_player(t_sl *sl, int y, int x);
+void				find_player(t_sl *sl, int y, int x, int choise);
 void				verify_path_ok(t_sl *sl, char **map);
 void				full_floodfill(char **map, int y, int x);
 void				check_edges_walls(t_sl *sl);

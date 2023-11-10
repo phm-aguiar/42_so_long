@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:08:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/09 17:08:13 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:24:10 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	initiate_variables_collectables(t_sl *sl)
 	sl->recurses.player = 0;
 	sl->recurses.exit = 0;
 	sl->recurses.collectibles = 0;
+	sl->recurses.total_key = 0;
 	sl->recurses.wall = 0;
 	sl->vars.index = 0;
 	sl->vars.choice = 0;

@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/09 18:28:40 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:03:13 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,16 @@ void	verify_collectable(t_sl *sl, int px, int py)
 	int	cx;
 	int	cy;
 	int	i;
+	int	j;
 
 	i = 4;
-	int j = sl->recurses.collectibles + i;
+	j = sl->recurses.total_key + i;
 	while (i < j)
 	{
 		cx = sl->image[i].image->instances[0].x;
 		cy = sl->image[i].image->instances[0].y;
-			printf("%d", i);
-		if (px == cx && py == cy)
+		if (px == cx && py == cy
+			&& sl->image[i].image->instances[0].enabled != 0)
 		{
 			sl->image[i].image->instances[0].enabled = 0;
 			sl->recurses.collectibles--;
@@ -33,10 +34,14 @@ void	verify_collectable(t_sl *sl, int px, int py)
 		}
 		i++;
 	}
-
+	if (sl->recurses.collectibles == 0
+		&& px == sl->image[3].image->instances[0].x
+		&& py == sl->image[3].image->instances[0].y)
+		mlx_error_sl("Você venceu!!\nObrigado por jogar!\nDev:Phenriq2", -41,
+				sl);
 }
 
-int	verify_wall(t_sl *sl, int x, int y)
+int	verify_content(t_sl *sl, int x, int y)
 {
 	int	wx;
 	int	wy;
@@ -50,12 +55,10 @@ int	verify_wall(t_sl *sl, int x, int y)
 	if (px < 0 || py < 0 || px > sl->map_file.width * 64
 		|| py > sl->map_file.height * 64)
 		return (1);
-	// printf("px:%d py:%d\n", px, py);
 	while (i < sl->recurses.wall)
 	{
 		wx = sl->image[1].image->instances[i].x;
 		wy = sl->image[1].image->instances[i].y;
-		// printf("wx:%d wy:%d\n", wx, wy);
 		if (px == wx && py == wy)
 			return (1);
 		i++;
@@ -68,22 +71,25 @@ void	my_move_img(t_sl *sl, int direction)
 {
 	if (direction == 1)
 	{
-		if (!verify_wall(sl, 0, -64))
+		if (!verify_content(sl, 0, -64))
 			sl->image[0].image->instances[0].y -= 64;
 	}
 	if (direction == 2)
 	{
-		if (!verify_wall(sl, 0, 64))
+		if (!verify_content(sl, 0, 64))
 			sl->image[0].image->instances[0].y += 64;
 	}
 	if (direction == 3)
 	{
-		if (!verify_wall(sl, -64, 0))
+		if (!verify_content(sl, -64, 0))
 			sl->image[0].image->instances[0].x -= 64;
+		sl->image[0].image->instances[1].x -= 64;
+		sl->image[0].image->instances[2].x -= 64;
+		sl->image[0].image->instances[3].x -= 64;
 	}
 	if (direction == 4)
 	{
-		if (!verify_wall(sl, 64, 0))
+		if (!verify_content(sl, 64, 0))
 			sl->image[0].image->instances[0].x += 64;
 	}
 	miniprintf("Moves:%d\n", sl->vars.hook++);
@@ -177,6 +183,7 @@ void	map_creator(t_sl *sl)
 
 void	mlx_work(t_sl *sl)
 {
+	sl->recurses.total_key = sl->recurses.collectibles;
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	sl->mlx =
 		mlx_init(sl->map_file.width * 64, sl->map_file.height * 64, "papacu",

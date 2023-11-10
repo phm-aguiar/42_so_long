@@ -13,6 +13,6 @@ valgrind:
           -s ../temp/a.out ../temp/map.ber \
 
 play:
-	cd ./src/temp && ./a.out map.ber
+	cd ./src/temp && ./a.out ampulheta.ber
 
 .PHONY: run valgrind play teste
