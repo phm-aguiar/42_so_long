@@ -6,11 +6,26 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/10 16:03:13 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/11 12:11:19 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/includes_and_defines_so_long.h"
+
+void	verify_exit_enimy(t_sl *sl, int px, int py)
+{
+	if (px == sl->image[3].image->instances[0].x
+		&& py == sl->image[3].image->instances[0].y)
+	{
+		if (sl->recurses.collectibles == 0)
+			mlx_error_sl("Obrigado por jogar!\nDev:Phenriq2", -41, sl);
+		else
+			miniprintf("You need to collect all collectibles");
+	}
+	if (px == sl->entity.instances[0].x && py == sl->entity.instances[0].y)
+		mlx_error_sl("Voce perdeu!!\nObrigado por jogar!\nDev:Phenriq2", -41,
+			sl);
+}
 
 void	verify_collectable(t_sl *sl, int px, int py)
 {
@@ -34,11 +49,7 @@ void	verify_collectable(t_sl *sl, int px, int py)
 		}
 		i++;
 	}
-	if (sl->recurses.collectibles == 0
-		&& px == sl->image[3].image->instances[0].x
-		&& py == sl->image[3].image->instances[0].y)
-		mlx_error_sl("Você venceu!!\nObrigado por jogar!\nDev:Phenriq2", -41,
-				sl);
+	verify_exit_enimy(sl, px, py);
 }
 
 int	verify_content(t_sl *sl, int x, int y)
@@ -83,9 +94,6 @@ void	my_move_img(t_sl *sl, int direction)
 	{
 		if (!verify_content(sl, -64, 0))
 			sl->image[0].image->instances[0].x -= 64;
-		sl->image[0].image->instances[1].x -= 64;
-		sl->image[0].image->instances[2].x -= 64;
-		sl->image[0].image->instances[3].x -= 64;
 	}
 	if (direction == 4)
 	{
@@ -100,20 +108,19 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	t_sl	*sl;
 
 	sl = (t_sl *)param;
-	if (keydata.key == ESC &&
-		(keydata.action == P || keydata.action == R))
+	if (keydata.key == ESC && (keydata.action == P || keydata.action == R))
 		mlx_error_sl("Obrigado por jogar!\nDev:Phenriq2", -41, sl);
-	if ((keydata.key == UP || keydata.key == W) &&
-		(keydata.action == P || keydata.action == R))
+	if ((keydata.key == UP || keydata.key == W) && (keydata.action == P
+			|| keydata.action == R))
 		my_move_img(sl, 1);
-	if ((keydata.key == RIGHT || keydata.key == D) &&
-		(keydata.action == P || keydata.action == R))
+	if ((keydata.key == RIGHT || keydata.key == D) && (keydata.action == P
+			|| keydata.action == R))
 		my_move_img(sl, 4);
-	if ((keydata.key == LEFT || keydata.key == A) &&
-		(keydata.action == P || keydata.action == R))
+	if ((keydata.key == LEFT || keydata.key == A) && (keydata.action == P
+			|| keydata.action == R))
 		my_move_img(sl, 3);
-	if ((keydata.key == DOWN || keydata.key == S) &&
-		(keydata.action == P || keydata.action == R))
+	if ((keydata.key == DOWN || keydata.key == S) && (keydata.action == P
+			|| keydata.action == R))
 		my_move_img(sl, 2);
 }
 
@@ -175,6 +182,8 @@ void	map_creator(t_sl *sl)
 				ft_image(sl->mlx, sl->image[3].image, sl->vars.j, sl->vars.i);
 			if (sl->map_file.map[sl->vars.i][sl->vars.j] == 'P')
 				ft_image(sl->mlx, sl->image[0].image, sl->vars.j, sl->vars.i);
+			if (sl->map_file.map[sl->vars.i][sl->vars.j] == 'I')
+				ft_image(sl->mlx, sl->entity.image, sl->vars.j, sl->vars.i);
 			sl->vars.j++;
 		}
 		sl->vars.i++;
@@ -185,9 +194,8 @@ void	mlx_work(t_sl *sl)
 {
 	sl->recurses.total_key = sl->recurses.collectibles;
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
-	sl->mlx =
-		mlx_init(sl->map_file.width * 64, sl->map_file.height * 64, "papacu",
-				1);
+	sl->mlx = mlx_init(sl->map_file.width * 64, sl->map_file.height * 64,
+			"papacu", 1);
 	if (!sl->mlx)
 		mlx_error_sl("mlx_init() failed", -40, sl);
 	counter_wall(sl);

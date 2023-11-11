@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:39:34 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/10 14:41:30 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/11 11:59:29 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	load_path(char **path)
 	path[2] = "../../assets/floor.png";
 	path[3] = "../../assets/exit.png";
 	path[4] = "../../assets/collectable.png";
+	path[5] = "../../assets/enimy.png";
 }
 
 void	all_image(t_sl *set)
@@ -45,4 +46,5 @@ void	all_image(t_sl *set)
 	j = 0;
 	while (j++ < k)
 		set->image[i++] = image_load(set->mlx, path[4]);
+	set->entity = image_load(set->mlx, path[5]);
 }

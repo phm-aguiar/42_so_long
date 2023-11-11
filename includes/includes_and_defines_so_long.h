@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:04:43 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/10 13:35:14 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/11 11:58:39 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_sl
 	t_commom_vars	vars;
 	mlx_t			*mlx;
 	t_image			image[1000];
+	t_image			entity;
 }					t_sl;
 
 // FUNCTIONS SO_LONG
