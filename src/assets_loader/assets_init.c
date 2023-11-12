@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:39:34 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/11 11:59:29 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:23:54 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	load_path(char **path)
 void	all_image(t_sl *set)
 {
 	int		i;
-	char	*path[5];
+	char	*path[6];
 	int		k;
 	int		j;
 

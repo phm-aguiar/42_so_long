@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:13:39 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/09 10:30:13 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:15:29 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static int	ft_check_format(va_list args, char current_format)
 
 int	miniprintf(const char *string, ...)
 {
-	va_list args;
-	int bytes;
-	int index;
+	va_list	args;
+	int		bytes;
+	int		index;
 
 	index = 0;
 	bytes = 0;

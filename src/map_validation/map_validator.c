@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:33:26 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/10 14:18:53 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:33:02 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,29 @@
 void	check_if_matrix_is_rectangle(t_sl *sl)
 {
 	int	area;
+	int	index;
+	int	i;
+	int	j;
 
-	sl->vars.j = 0;
-	sl->vars.k = 0;
-	sl->vars.index = 0;
 	area = sl->map_file.height * sl->map_file.width;
-	while (sl->map_file.map[sl->vars.j])
+	index = 0;
+	i = 0;
+	while (sl->map_file.map[i])
 	{
-		while (sl->map_file.map[sl->vars.j][sl->vars.k])
+		j = 0;
+		while (sl->map_file.map[i][j])
 		{
-			sl->vars.k++;
-			sl->vars.index++;
+			index++;
+			j++;
 		}
-		sl->vars.k = 0;
-		sl->vars.j++;
+		i++;
 	}
-	sl->vars.choice = -40;
-	if (sl->vars.index != area || area < 15 || sl->map_file.height*64 >1080 || sl->map_file.width*64 >= 1920)
-		ft_error("Map is not a valide rectangle", sl);
+	if (index != area || area < 15 || sl->map_file.height * 64 > 1080
+		|| sl->map_file.width * 64 >= 1920)
+		ft_error("Map is not a valid rectangle", sl);
 }
 
-void	verify_path_ok(t_sl *sl, char **map)
+void	verify_path(t_sl *sl, char **map)
 {
 	sl->vars.choice = -40;
 	sl->vars.i = 0;
@@ -55,13 +57,8 @@ void	verify_path_ok(t_sl *sl, char **map)
 
 void	full_floodfill(char **map, int y, int x)
 {
-	if (map[y][x] == '1' || map[y][x] == '-')
+	if (map[y][x] == '1' || map[y][x] == '-' || map[y][x] == 'I')
 		return ;
-	// if (map[y][x] == 'I')
-	// {
-	// 	map[y][x] = '-';
-	// 	return ;
-	// }
 	map[y][x] = '-';
 	full_floodfill(map, y - 1, x);
 	full_floodfill(map, y + 1, x);
@@ -73,9 +70,9 @@ void	check_edges_walls(t_sl *sl)
 {
 	sl->vars.j = 0;
 	sl->vars.choice = -40;
-	sl->vars.k = 0;
 	while (sl->map_file.map[sl->vars.j])
 	{
+		sl->vars.k = 0;
 		while (sl->map_file.map[sl->vars.j][sl->vars.k])
 		{
 			if (sl->map_file.map[0][sl->vars.k] != '1')
@@ -93,27 +90,28 @@ void	check_edges_walls(t_sl *sl)
 	}
 }
 
-void	check_content(t_sl *sl)
+void	check_content(t_sl *sl, char current_char, char **map)
 {
 	sl->vars.choice = -40;
 	sl->vars.j = 0;
-	sl->vars.k = 0;
-	while (sl->map_file.map[sl->vars.j])
+	while (map[sl->vars.j])
 	{
-		while (sl->map_file.map[sl->vars.j][sl->vars.k])
+		sl->vars.k = 0;
+		while (map[sl->vars.j][sl->vars.k])
 		{
-			if (!ft_strchr(PERMITED_CHARS,
-							sl->map_file.map[sl->vars.j][sl->vars.k]))
+			current_char = map[sl->vars.j][sl->vars.k];
+			if (!ft_strchr(PERMITED_CHARS, current_char))
 				ft_error("Invalid character in map", sl);
-			if (sl->map_file.map[sl->vars.j][sl->vars.k] == 'P')
+			else if (current_char == 'P')
 				find_player(sl, sl->vars.j, sl->vars.k, 1);
-			if (sl->map_file.map[sl->vars.j][sl->vars.k] == 'E')
+			else if (current_char == 'E')
 				find_player(sl, sl->vars.j, sl->vars.k, 2);
-			if (sl->map_file.map[sl->vars.j][sl->vars.k] == 'C')
+			else if (current_char == 'C')
 				sl->recurses.collectibles++;
+			else if (current_char == 'I')
+				sl->recurses.entity++;
 			sl->vars.k++;
 		}
-		sl->vars.k = 0;
 		sl->vars.j++;
 	}
 	if (sl->recurses.player != 1 || sl->recurses.exit != 1

@@ -50,5 +50,11 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Valgrind Reports
+
 *.txt
 *.sup
+
+# Virtual Studio Code
+.vscode/
