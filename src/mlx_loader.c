@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:17:57 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 12:18:07 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:10:32 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/includes_and_defines_so_long.h"
+#include "../includes/includes_and_defines_so_long.h"
 
 void	ft_image(void *mlx, mlx_image_t *img, int x, int y)
 {

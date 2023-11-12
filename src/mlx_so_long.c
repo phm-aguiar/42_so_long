@@ -6,25 +6,24 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:29:49 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 12:36:40 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:10:42 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/includes_and_defines_so_long.h"
+#include "../includes/includes_and_defines_so_long.h"
 
-void	mlx_error_sl(char *str, int choise, t_sl *sl)
+void	mlx_error_sl(char *str, t_sl *sl)
 {
 	int	i;
 	int	k;
 
 	i = -1;
-	sl->vars.choice = choise;
 	mlx_terminate(sl->mlx);
 	k = 4 + sl->recurses.total_key;
 	while (++i < k)
 		mlx_delete_texture(sl->image[i].texture);
 	mlx_delete_texture(sl->entity.texture);
-	ft_error(str, sl);
+	ft_error(str, sl, 42);
 }
 
 void	mlx_work(t_sl *sl)
@@ -34,7 +33,7 @@ void	mlx_work(t_sl *sl)
 	sl->mlx = mlx_init(sl->map_file.width * 64, sl->map_file.height * 64,
 			"papacu", 1);
 	if (!sl->mlx)
-		mlx_error_sl("mlx_init() failed", -40, sl);
+		ft_error("mlx_init() failed", sl, 42);
 	counter_wall(sl);
 	all_image(sl);
 	map_creator(sl);

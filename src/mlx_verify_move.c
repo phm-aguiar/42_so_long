@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:20:47 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 12:21:38 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:10:47 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/includes_and_defines_so_long.h"
+#include "../includes/includes_and_defines_so_long.h"
 
 void	verify_exit_enimy(t_sl *sl, int px, int py)
 {
@@ -21,14 +21,14 @@ void	verify_exit_enimy(t_sl *sl, int px, int py)
 		&& py == sl->image[3].image->instances[0].y)
 	{
 		if (sl->recurses.collectibles == 0)
-			mlx_error_sl("Obrigado por jogar!\nDev:Phenriq2", -41, sl);
+			mlx_error_sl("Obrigado por jogar!\nDev:Phenriq2", sl);
 	}
 	while (i >= 0)
 	{
 		if (px == sl->entity.image->instances[i].x
 			&& py == sl->entity.image->instances[i].y)
 			mlx_error_sl("Voce perdeu!!\nObrigado por jogar!\
-			\nDev:Phenriq2", -41, sl);
+			\nDev:Phenriq2", sl);
 		i--;
 	}
 }

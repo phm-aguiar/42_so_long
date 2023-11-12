@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:13:39 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 12:15:29 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:10:29 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/includes_and_defines_so_long.h"
+#include "../includes/includes_and_defines_so_long.h"
 
 static int	ft_check_format(va_list args, char current_format)
 {

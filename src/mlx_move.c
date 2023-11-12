@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:19:43 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 12:37:44 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:10:38 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/includes_and_defines_so_long.h"
+#include "../includes/includes_and_defines_so_long.h"
 
 void	my_move_img(t_sl *sl, int direction)
 {
@@ -43,7 +43,7 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 
 	sl = (t_sl *)param;
 	if (keydata.key == ESC && (keydata.action == P || keydata.action == R))
-		mlx_error_sl("Obrigado por jogar!\nDev:Phenriq2", -41, sl);
+		mlx_error_sl("Obrigado por jogar!\nDev:Phenriq2", sl);
 	if ((keydata.key == UP || keydata.key == W) && (keydata.action == P
 			|| keydata.action == R))
 		my_move_img(sl, 1);

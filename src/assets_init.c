@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:39:34 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 12:23:54 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:09:58 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/includes_and_defines_so_long.h"
+#include "../includes/includes_and_defines_so_long.h"
 
 t_image	image_load(void *mlx, char *path)
 {
