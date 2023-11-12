@@ -6,14 +6,13 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:04:43 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 15:34:21 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:59:07 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INCLUDES_AND_DEFINES_SO_LONG_H
 # define INCLUDES_AND_DEFINES_SO_LONG_H
 
-// includes_and_defines_so_long.h
 # include "MLX42/include/MLX42/MLX42.h"
 # include "libft/libft.h"
 # include <fcntl.h>
@@ -22,8 +21,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-// DEFINES SO_LONG
 # define PERMITED_CHARS "CEPI10"
 # define ESC MLX_KEY_ESCAPE
 # define UP MLX_KEY_UP
@@ -37,8 +34,6 @@
 # define Q MLX_KEY_Q
 # define P MLX_PRESS
 # define R MLX_REPEAT
-
-// STRUCTS SO_LONG
 
 typedef struct s_vars
 {
@@ -89,12 +84,9 @@ typedef struct s_sl
 	t_recurses		recurses;
 	t_vars			vars;
 	mlx_t			*mlx;
-	t_image			image[1000];
-	t_image			entity;
+	t_image			image[5];
+	t_image			collectable[1000];
 }					t_sl;
-
-// FUNCTIONS SO_LONG
-// assets loader
 
 t_image				image_load(void *mlx, char *path);
 void				load_path(char **path);
@@ -103,13 +95,10 @@ void				ft_image(void *mlx, mlx_image_t *img, int x, int y);
 void				floor_all(t_sl *sl, mlx_image_t *img);
 void				collectable_creator(t_sl *sl);
 void				map_creator(t_sl *sl);
-
-// map validation
-
 void				initiate_variables_collectables(t_sl *sl);
 void				counter_wall(t_sl *sl);
 void				arg_cheker(char *path, t_sl *sl);
-void				ft_error(char *str, t_sl *sl);
+void				ft_error(char *str, t_sl *sl, int choise);
 void				map_maker(t_sl *sl);
 void				find_player(t_sl *sl, int y, int x, int choise);
 void				check_content(t_sl *sl, char current_char, char **map);
@@ -119,12 +108,9 @@ void				validate_map(t_sl *sl);
 void				check_if_matrix_is_rectangle(t_sl *sl);
 void				verify_path(t_sl *sl, char **map);
 int					miniprintf(const char *string, ...);
-
-// mlx functions
-
 void				my_move_img(t_sl *sl, int direction);
 void				my_keyhook(mlx_key_data_t keydata, void *param);
-void				mlx_error_sl(char *str, int choise, t_sl *sl);
+void				mlx_error_sl(char *str, t_sl *sl);
 void				mlx_work(t_sl *sl);
 void				verify_exit_enimy(t_sl *sl, int px, int py);
 void				verify_collectable(t_sl *sl, int px, int py);

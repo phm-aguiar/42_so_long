@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:20:47 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 18:10:47 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 19:16:35 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	verify_exit_enimy(t_sl *sl, int px, int py)
 	}
 	while (i >= 0)
 	{
-		if (px == sl->entity.image->instances[i].x
-			&& py == sl->entity.image->instances[i].y)
+		if (px == sl->image[4].image->instances[i].x
+			&& py == sl->image[4].image->instances[i].y)
 			mlx_error_sl("Voce perdeu!!\nObrigado por jogar!\
 			\nDev:Phenriq2", sl);
 		i--;

@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:29:49 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 18:10:42 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 19:22:09 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	mlx_error_sl(char *str, t_sl *sl)
 
 	i = -1;
 	mlx_terminate(sl->mlx);
-	k = 4 + sl->recurses.total_key;
+	k = sl->recurses.total_key;
 	while (++i < k)
+		mlx_delete_texture(sl->collectable[i].texture);
+	i = -1;
+	while (++i < 5)
 		mlx_delete_texture(sl->image[i].texture);
-	mlx_delete_texture(sl->entity.texture);
 	ft_error(str, sl, 42);
 }
 

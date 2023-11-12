@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:17:57 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 18:10:32 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 19:15:49 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	collectable_creator(t_sl *sl)
 		{
 			if (sl->map_file.map[sl->vars.i][sl->vars.j] == 'C')
 			{
-				ft_image(sl->mlx, sl->image[i].image, sl->vars.j, sl->vars.i);
+				ft_image(sl->mlx, sl->collectable[i].image, sl->vars.j, \
+				sl->vars.i);
 				i++;
 			}
 			sl->vars.j++;
@@ -71,7 +72,7 @@ void	map_creator(t_sl *sl)
 			if (sl->map_file.map[sl->vars.i][sl->vars.j] == 'P')
 				ft_image(sl->mlx, sl->image[0].image, sl->vars.j, sl->vars.i);
 			if (sl->map_file.map[sl->vars.i][sl->vars.j] == 'I')
-				ft_image(sl->mlx, sl->entity.image, sl->vars.j, sl->vars.i);
+				ft_image(sl->mlx, sl->image[4].image, sl->vars.j, sl->vars.i);
 			sl->vars.j++;
 		}
 		sl->vars.i++;

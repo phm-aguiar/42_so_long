@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:14:25 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 18:10:15 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:44:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	map_maker(t_sl *sl)
 		ft_error("open: Invalid file", sl, 0);
 	sl->vars.bytes_read = read(sl->vars.fd, sl->map_file.buffer, 4079);
 	if (sl->vars.bytes_read == -1)
-		ft_error("read: Invalid file", sl, 0);
+		ft_error("read: Invalid file", sl, 0); 
 	if (sl->vars.bytes_read == 4080)
 		ft_error("File too big", sl, 0);
 	if (sl->vars.bytes_read == 0)
