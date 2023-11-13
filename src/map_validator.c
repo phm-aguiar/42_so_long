@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:33:26 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 18:10:22 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/13 20:03:24 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_and_defines_so_long.h"
+#include "includes/includes_and_defines_so_long.h"
 
 void	check_if_matrix_is_rectangle(t_sl *sl)
 {
@@ -39,7 +39,6 @@ void	check_if_matrix_is_rectangle(t_sl *sl)
 
 void	verify_path(t_sl *sl, char **map)
 {
-	sl->vars.choice = -40;
 	sl->vars.i = 0;
 	while (map[sl->vars.i])
 	{
@@ -69,7 +68,6 @@ void	full_floodfill(char **map, int y, int x)
 void	check_edges_walls(t_sl *sl)
 {
 	sl->vars.j = 0;
-	sl->vars.choice = -40;
 	while (sl->map_file.map[sl->vars.j])
 	{
 		sl->vars.k = 0;
@@ -92,7 +90,6 @@ void	check_edges_walls(t_sl *sl)
 
 void	check_content(t_sl *sl, char current_char, char **map)
 {
-	sl->vars.choice = -40;
 	sl->vars.j = 0;
 	while (map[sl->vars.j])
 	{
@@ -103,18 +100,14 @@ void	check_content(t_sl *sl, char current_char, char **map)
 			if (!ft_strchr(PERMITED_CHARS, current_char))
 				ft_error("Invalid character in map", sl, 42);
 			else if (current_char == 'P')
-				find_player(sl, sl->vars.j, sl->vars.k, 1);
+				set_xy(sl, sl->vars.j, sl->vars.k, 1);
 			else if (current_char == 'E')
-				find_player(sl, sl->vars.j, sl->vars.k, 2);
-			else if (current_char == 'C')
-				sl->recurses.collectibles++;
-			else if (current_char == 'I')
-				sl->recurses.entity++;
+				set_xy(sl, sl->vars.j, sl->vars.k, 2);
 			sl->vars.k++;
 		}
 		sl->vars.j++;
 	}
-	if (sl->recurses.player != 1 || sl->recurses.exit != 1
+	if (sl->recurses.player != 1 || sl->recurses.door != 1
 		|| sl->recurses.collectibles < 1)
 		ft_error("Invalid recurses map", sl, 42);
 }

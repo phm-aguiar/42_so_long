@@ -6,15 +6,15 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 15:47:22 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/27 16:03:49 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/13 18:30:23 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_matrixdel(char **matrix)
+void	ft_matrixdel(char **matrix)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (matrix[i])
@@ -23,4 +23,5 @@ void ft_matrixdel(char **matrix)
 		i++;
 	}
 	free(matrix);
+	matrix = NULL;
 }

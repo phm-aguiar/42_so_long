@@ -6,15 +6,15 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:04:43 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 18:59:07 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:35:41 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INCLUDES_AND_DEFINES_SO_LONG_H
 # define INCLUDES_AND_DEFINES_SO_LONG_H
 
-# include "MLX42/include/MLX42/MLX42.h"
-# include "libft/libft.h"
+# include "includes/MLX42/include/MLX42/MLX42.h"
+# include "includes/libft/libft.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -67,9 +67,9 @@ typedef struct s_recurses
 	int				player;
 	int				collectibles;
 	int				total_key;
-	int				exit;
+	int				boss;
+	int				door;
 	int				wall;
-	int				entity;
 }					t_recurses;
 
 typedef struct s_image
@@ -84,8 +84,8 @@ typedef struct s_sl
 	t_recurses		recurses;
 	t_vars			vars;
 	mlx_t			*mlx;
-	t_image			image[5];
-	t_image			collectable[1000];
+	t_image			image[1000];
+	int				total_images;
 }					t_sl;
 
 t_image				image_load(void *mlx, char *path);
@@ -96,11 +96,10 @@ void				floor_all(t_sl *sl, mlx_image_t *img);
 void				collectable_creator(t_sl *sl);
 void				map_creator(t_sl *sl);
 void				initiate_variables_collectables(t_sl *sl);
-void				counter_wall(t_sl *sl);
 void				arg_cheker(char *path, t_sl *sl);
 void				ft_error(char *str, t_sl *sl, int choise);
 void				map_maker(t_sl *sl);
-void				find_player(t_sl *sl, int y, int x, int choise);
+void				set_xy(t_sl *sl, int y, int x, int choise);
 void				check_content(t_sl *sl, char current_char, char **map);
 void				check_edges_walls(t_sl *sl);
 void				full_floodfill(char **map, int y, int x);
@@ -115,5 +114,6 @@ void				mlx_work(t_sl *sl);
 void				verify_exit_enimy(t_sl *sl, int px, int py);
 void				verify_collectable(t_sl *sl, int px, int py);
 int					verify_content(t_sl *sl, int x, int y);
+void				img_del(t_sl *sl);
 
 #endif

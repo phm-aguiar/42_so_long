@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:39:34 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 19:25:24 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/13 20:16:32 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_and_defines_so_long.h"
+#include "includes/includes_and_defines_so_long.h"
 
 t_image	image_load(void *mlx, char *path)
 {
@@ -23,12 +23,12 @@ t_image	image_load(void *mlx, char *path)
 
 void	load_path(char **path)
 {
-	path[0] = "../assets/player.png";
-	path[1] = "../assets/wall.png";
-	path[2] = "../assets/floor.png";
-	path[3] = "../assets/exit.png";
-	path[4] = "../assets/enimy.png";
-	path[5] = "../assets/collectable.png";
+	path[0] = "assets/player.png";
+	path[1] = "assets/wall.png";
+	path[2] = "assets/floor.png";
+	path[3] = "assets/exit.png";
+	path[4] = "assets/enimy.png";
+	path[5] = "assets/collectable.png";
 }
 
 void	all_image(t_sl *set)
@@ -38,12 +38,15 @@ void	all_image(t_sl *set)
 	int		k;
 
 	load_path(path);
-	i = -1;
-	printf("aqui\n");
-	while (++i < 5)
+	i = 0;
+	while (i < 5)
+	{
 		set->image[i] = image_load(set->mlx, path[i]);
-	k = set->recurses.collectibles - 1;
-	i = -1;
-	while (++i < k)
-		set->collectable[i] = image_load(set->mlx, path[5]);
+		i++;
+	}
+	k = set->recurses.collectibles;
+	k += i;
+	while (i < k)
+		set->image[i++] = image_load(set->mlx, path[5]);
+	set->total_images = i;
 }

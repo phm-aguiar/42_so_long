@@ -6,17 +6,17 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:20:47 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 19:16:35 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:41:19 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_and_defines_so_long.h"
+#include "includes/includes_and_defines_so_long.h"
 
 void	verify_exit_enimy(t_sl *sl, int px, int py)
 {
 	int	i;
 
-	i = sl->recurses.entity - 1;
+	i = sl->recurses.boss - 1;
 	if (px == sl->image[3].image->instances[0].x
 		&& py == sl->image[3].image->instances[0].y)
 	{
@@ -40,7 +40,7 @@ void	verify_collectable(t_sl *sl, int px, int py)
 	int	i;
 	int	j;
 
-	i = 4;
+	i = 5;
 	j = sl->recurses.total_key + i;
 	while (i < j)
 	{

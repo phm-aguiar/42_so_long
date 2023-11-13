@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:17:57 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 19:15:49 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:43:21 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_and_defines_so_long.h"
+#include "includes/includes_and_defines_so_long.h"
 
 void	ft_image(void *mlx, mlx_image_t *img, int x, int y)
 {
@@ -36,7 +36,7 @@ void	collectable_creator(t_sl *sl)
 {
 	int	i;
 
-	i = 4;
+	i = 5;
 	sl->vars.i = 0;
 	while (sl->map_file.map[sl->vars.i])
 	{
@@ -45,7 +45,7 @@ void	collectable_creator(t_sl *sl)
 		{
 			if (sl->map_file.map[sl->vars.i][sl->vars.j] == 'C')
 			{
-				ft_image(sl->mlx, sl->collectable[i].image, sl->vars.j, \
+				ft_image(sl->mlx, sl->image[i].image, sl->vars.j, \
 				sl->vars.i);
 				i++;
 			}

@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:19:43 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/12 18:10:38 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:36:05 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_and_defines_so_long.h"
+#include "includes/includes_and_defines_so_long.h"
 
 void	my_move_img(t_sl *sl, int direction)
 {

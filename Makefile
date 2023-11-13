@@ -6,7 +6,7 @@
 #    By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/12 17:58:44 by phenriq2          #+#    #+#              #
-#    Updated: 2023/11/12 18:46:14 by phenriq2         ###   ########.fr        #
+#    Updated: 2023/11/13 20:18:42 by phenriq2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,4 +107,12 @@ bonus:
 debbug:
 	@make WITH_DEBBUG=TRUE --no-print-directory
 
-.PHONY: all bonus clean fclean re debbug
+valgrind:
+		valgrind --leak-check=full \
+         --show-leak-kinds=all \
+         --track-origins=yes \
+         --verbose \
+         --log-file=src/temp/valgrind-out.txt --suppressions=src/temp/sup.sup \
+          -s ./$(NAME) src/temp/ampulheta.ber
+
+.PHONY: all bonus clean fclean re debbug valgrind
