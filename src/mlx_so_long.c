@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:29:49 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/14 15:49:53 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:00:03 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	mlx_work(t_sl *sl)
 	sl->recurses.total_key = sl->recurses.collectibles;
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	sl->mlx = mlx_init(sl->map_file.width * 64, sl->map_file.height * 64,
-			"miau", 1);
+			"so_long", 1);
 	if (!sl->mlx)
 		ft_error("mlx_init() failed\n", sl, 42);
 	all_image(sl);
