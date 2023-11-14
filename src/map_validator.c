@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:33:26 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/14 12:32:53 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:38:38 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	check_if_matrix_is_rectangle(t_sl *sl)
 	}
 	if (index != area || area < 15 || sl->map_file.height * 64 > 1080
 		|| sl->map_file.width * 64 >= 1920)
-		ft_error("Map is not a valid rectangle", sl, 42);
+		ft_error("Map is not a valid rectangle\n", sl, 42);
 }
 
 void	verify_path(t_sl *sl, char **map)
@@ -47,7 +47,10 @@ void	verify_path(t_sl *sl, char **map)
 		{
 			if (map[sl->vars.i][sl->vars.j] == 'E'
 				|| map[sl->vars.i][sl->vars.j] == 'C')
-				ft_error("Invalid path floodfill", sl, 42);
+			{
+				ft_matrixdel(sl->map_file.mapcpy);
+				ft_error("Invalid path floodfill\n", sl, 42);
+			}
 			sl->vars.j++;
 		}
 		sl->vars.i++;
@@ -74,14 +77,14 @@ void	check_edges_walls(t_sl *sl)
 		while (sl->map_file.map[sl->vars.j][sl->vars.k])
 		{
 			if (sl->map_file.map[0][sl->vars.k] != '1')
-				ft_error("Invalid map wall", sl, 42);
+				ft_error("Invalid map wall\n", sl, 42);
 			else if (sl->map_file.map[sl->vars.j][0] != '1' ||
 						sl->map_file.map[sl->vars.j][sl->map_file.width
 							- 1] != '1')
-				ft_error("Invalid map wall", sl, 42);
+				ft_error("Invalid map wall\n", sl, 42);
 			else if (sl->map_file.map[sl->map_file.height
 					- 1][sl->vars.k] != '1')
-				ft_error("Invalid map wall", sl, 42);
+				ft_error("Invalid map wall\n", sl, 42);
 			sl->vars.k++;
 		}
 		sl->vars.j++;
@@ -98,7 +101,7 @@ void	check_content(t_sl *sl, char current_char, char **map)
 		{
 			current_char = map[sl->vars.j][sl->vars.k];
 			if (!ft_strchr(PERMITED_CHARS, current_char))
-				ft_error("Invalid character in map", sl, 42);
+				ft_error("Invalid character in map\n", sl, 42);
 			else if (current_char == 'P')
 				set_xy(sl, sl->vars.j, sl->vars.k, 1);
 			else if (current_char == 'E')
@@ -109,5 +112,5 @@ void	check_content(t_sl *sl, char current_char, char **map)
 	}
 	if (sl->recurses.player != 1 || sl->recurses.door != 1
 		|| sl->recurses.collectibles < 1)
-		ft_error("Invalid recurses map", sl, 42);
+		ft_error("Invalid recurses map\n", sl, 42);
 }

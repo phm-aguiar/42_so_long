@@ -6,15 +6,15 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 15:44:40 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/27 15:47:56 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:52:58 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_matrixlen(char **matrix)
+int	ft_matrixlen(char **matrix)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (matrix[i])

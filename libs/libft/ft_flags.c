@@ -41,7 +41,7 @@ int	flag_space(void)
 int	flag_u(va_list args, int flag)
 {
 	int	nbr;
-	int		counter;
+	int	counter;
 
 	counter = 0;
 	if (flag == 2)

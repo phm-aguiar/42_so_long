@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:14:25 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/14 12:32:53 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:46:42 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,56 +43,55 @@ void	validate_map(t_sl *sl)
 	check_edges_walls(sl);
 	sl->map_file.mapcpy = ft_split(sl->map_file.buffer, '\n');
 	if (!sl->map_file.mapcpy)
-		ft_error("failed to allocate memory", sl, 42);
+		ft_error("failed to allocate memory\n", sl, 42);
 	full_floodfill(sl->map_file.mapcpy, sl->vars.start_y, sl->vars.start_x);
 	verify_path(sl, sl->map_file.mapcpy);
 	ft_matrixdel(sl->map_file.mapcpy);
 }
 
-void	set_xy(t_sl *sl, int y, int x, int choise)
+void	set_xy(t_sl *sl, int y, int x, int choice)
 {
-	if (choise == 1)
+	if (choice == 1)
 	{
 		sl->vars.start_y = y;
 		sl->vars.start_x = x;
 	}
-	if (choise == 2)
+	if (choice == 2)
 	{
 		sl->vars.end_y = y;
 		sl->vars.end_x = x;
 	}
 }
 
-void	ft_error(char *str, t_sl *sl, int choise)
+void	ft_error(char *str, t_sl *sl, int choice)
 {
 	miniprintf("%s", str);
-	if (choise == 0)
-	{
+	if (choice == 0)
 		close(sl->vars.fd);
-		perror("");
-	}
 	if (sl->map_file.map)
 		ft_matrixdel(sl->map_file.map);
-	exit(0);
+	if (choice == 1)
+		exit(0);
+	exit(1);
 }
 
 void	map_maker(t_sl *sl)
 {
 	sl->vars.fd = open(sl->vars.path, O_RDONLY);
 	if (sl->vars.fd == -1)
-		ft_error("open: Invalid file", sl, 0);
+		ft_error("open: Invalid file\n", sl, 0);
 	sl->vars.bytes_read = read(sl->vars.fd, sl->map_file.buffer, 4079);
 	if (sl->vars.bytes_read == -1)
-		ft_error("read: Invalid file", sl, 0);
+		ft_error("read: Invalid file\n", sl, 0);
 	if (sl->vars.bytes_read == 4080)
-		ft_error("File too big", sl, 0);
+		ft_error("File too big\n", sl, 0);
 	if (sl->vars.bytes_read == 0)
-		ft_error("Empty file", sl, 0);
+		ft_error("Empty file\n", sl, 0);
 	sl->map_file.buffer[sl->vars.bytes_read] = '\0';
 	close(sl->vars.fd);
 	sl->map_file.map = ft_split(sl->map_file.buffer, '\n');
 	if (!sl->map_file.map)
-		ft_error("failed to allocate memory", sl, 42);
+		ft_error("failed to allocate memory\n", sl, 42);
 	sl->map_file.width = ft_strlen(sl->map_file.map[0]);
 	sl->map_file.height = ft_matrixlen(sl->map_file.map);
 	validate_map(sl);

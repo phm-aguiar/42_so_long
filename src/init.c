@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:08:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/14 12:51:38 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:47:49 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,16 @@ void	initiate_variables_collectables(t_sl *sl)
 	sl->vars.bytes_read = 0;
 	sl->vars.pf_counter = 0;
 	sl->vars.hook = 0;
+	sl->map_file.map = NULL;
+	sl->map_file.mapcpy = NULL;
+	sl->vars.choice = 0;
 }
 
 void	arg_cheker(char *path, t_sl *sl)
 {
-	size_t		path_len;
-	const char	*extension;
-	size_t		extension_len;
+	size_t	path_len;
+	char	*extension;
+	size_t	extension_len;
 
 	path_len = ft_strlen(path);
 	extension = ".ber";
@@ -41,5 +44,5 @@ void	arg_cheker(char *path, t_sl *sl)
 		sl->vars.path = path;
 		return ;
 	}
-	ft_error("Invalid file extension", sl, 42);
+	ft_error("Invalid file extension\n", sl, 42);
 }

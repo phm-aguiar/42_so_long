@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:04:43 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/14 14:48:46 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:27:33 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void					collectable_creator(t_sl *sl);
 void					map_creator(t_sl *sl);
 void					initiate_variables_collectables(t_sl *sl);
 void					arg_cheker(char *path, t_sl *sl);
-void					ft_error(char *str, t_sl *sl, int choise);
+void					ft_error(char *str, t_sl *sl, int choice);
 void					map_maker(t_sl *sl);
-void					set_xy(t_sl *sl, int y, int x, int choise);
+void					set_xy(t_sl *sl, int y, int x, int choice);
 void					check_content(t_sl *sl, char current_char, char **map);
 void					check_edges_walls(t_sl *sl);
 void					full_floodfill(char **map, int y, int x);

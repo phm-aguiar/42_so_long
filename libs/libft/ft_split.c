@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 11:33:21 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/26 16:05:11 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:52:10 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ size_t	ft_count_words(char const *s, char c)
 
 char	**ft_split(char const *s, char c)
 {
-	t_var spl;
+	t_var	spl;
 
 	spl.i = 0;
 	if (!s)
