@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:17:57 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/13 19:43:21 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:32:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/includes_and_defines_so_long.h"
+#include "../includes/so_long.h"
 
 void	ft_image(void *mlx, mlx_image_t *img, int x, int y)
 {
@@ -45,8 +45,7 @@ void	collectable_creator(t_sl *sl)
 		{
 			if (sl->map_file.map[sl->vars.i][sl->vars.j] == 'C')
 			{
-				ft_image(sl->mlx, sl->image[i].image, sl->vars.j, \
-				sl->vars.i);
+				ft_image(sl->mlx, sl->image[i].image, sl->vars.j, sl->vars.i);
 				i++;
 			}
 			sl->vars.j++;
@@ -68,7 +67,10 @@ void	map_creator(t_sl *sl)
 			if (sl->map_file.map[sl->vars.i][sl->vars.j] == '1')
 				ft_image(sl->mlx, sl->image[1].image, sl->vars.j, sl->vars.i);
 			if (sl->map_file.map[sl->vars.i][sl->vars.j] == 'E')
+			{
 				ft_image(sl->mlx, sl->image[3].image, sl->vars.j, sl->vars.i);
+				sl->image[3].image->instances[0].enabled = 0;
+			}
 			if (sl->map_file.map[sl->vars.i][sl->vars.j] == 'P')
 				ft_image(sl->mlx, sl->image[0].image, sl->vars.j, sl->vars.i);
 			if (sl->map_file.map[sl->vars.i][sl->vars.j] == 'I')

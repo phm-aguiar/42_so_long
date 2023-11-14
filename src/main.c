@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:38:55 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/13 19:37:50 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:02:39 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/includes_and_defines_so_long.h"
+#include "../includes/so_long.h"
 
 int	main(int argc, char **argv)
 {

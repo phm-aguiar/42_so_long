@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:08:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/13 18:15:23 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:51:38 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/includes_and_defines_so_long.h"
+#include "../includes/so_long.h"
 
 void	initiate_variables_collectables(t_sl *sl)
 {

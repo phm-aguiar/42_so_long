@@ -1,118 +1,60 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/12 17:58:44 by phenriq2          #+#    #+#              #
-#    Updated: 2023/11/13 20:18:42 by phenriq2         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-
-#******************************************************************************#
-#								  CONFIGURATION				       			   #
-#******************************************************************************#
-
 NAME = so_long
+LIBFT = ./libs/libft/libft.a
+MLX = ./libs/MLX42/build/libmlx42.a
+MFLAGS = -Iinclude -ldl -lglfw -pthread -lm
+CFLAGS = -Wall -Wextra -Werror -O3 -g3
 
-LIBFT = includes/libft/libft.a
-MLX = MLX42/build/libmlx42.a
+LIBFT_PATH = libs/libft
+MLX_PATH = libs/MLX42
+OBJ_PATH = ./obj
+SRC_PATH = ./src
 
-SHELL := /bin/bash
-COUNT := 0
+GREEN = \033[1;32m
+RED = \033[1;31m
+CYAN = \033[1;35m
+RESET = \033[0m
 
-BLACK  		 = \033[0;30m
-RED    		 = \033[0;31m
-GREEN  		 = \033[0;32m
-YELLOW 		 = \033[0;33m
-BLUE   		 = \033[0;34m
-MAGENTA		 = \033[0;35m
-CYAN   		 = \033[0;36m
-WHITE  		 = \033[0;37m
-RESET  		 = \033[0m
+CFILES = assets_init.c init.c main.c \
+		map_maker.c map_validator.c \
+		miniprintf.c mlx_loader.c \
+		mlx_move.c mlx_so_long.c \
+		mlx_verify_move.c
 
-MFLAGS = -ldl -lglfw -pthread -lm
-CFLAGS = -Wall -Wextra -Werror -g3 #-O3
+OBJECTS = $(addprefix $(OBJ_PATH)/, $(CFILES:.c=.o))
 
-SRC = src
-INC = includes
-OBJ = obj
-LIBFT_PATH = includes/libft
+INCLUDES = -I ./includes
 
-define eraseBins
-	$(if $(NAME),@$(RM) $(NAME))
-	$(if $(BLIBNAME),@$(RM) $(BLIBNAME))
-endef
+all: libft $(MLX) $(OBJ_PATH) $(NAME)
 
-#******************************************************************************#
-#				     				FILES      								   #
-#******************************************************************************#
+libft:
+	@make -C $(LIBFT_PATH) --no-print-directory
 
-CFILES = $(addprefix $(SRC)/, assets_init.c init.c main.c map_maker.c map_validator.c miniprintf.c mlx_loader.c \
-mlx_move.c mlx_so_long.c mlx_verify_move.c)
-
-BFILES ?=
-
-OBJ_DIR = obj
-
-OBJECT =  $(patsubst %, $(OBJ)/%, $(notdir $(CFILES:.c=.o)))
-
-INCLUDES = -I./ -I./includes/libft -I./includes/MLX42/include/MLX42
-LINCLUDES = -L./includes/libft -lft
-MLX = includes/MLX42/build/libmlx42.a
-
-ifdef WITH_BONUS
-	CFILES = $(BFILES)
-endif
-
-all: $(OBJ) $(NAME)
-
-$(NAME): $(MLX) $(OBJECT)
-	@$(MAKE) -sC $(LIBFT_PATH)
-	@$(CC) $(OBJECT) $(INCLUDES)  $(LIBFT) $(MLX) $(LINCLUDES) $(CFLAGS) $(MFLAGS) -o $(NAME)
-	@$(SLEEP)
-	@printf "\n$(MAGENTA)$(MANDATORY)\n$(RESET)"
-
-$(OBJ):
-	@mkdir -p $(OBJ)
-
-.SILENT:
 $(MLX):
-	@cd MLX42 && cmake -B build -DDEBUG=1
-	@cd MLX42 && cmake --build build -j4
+	@cd libs/MLX42 && cmake -B build -DDEBUG=1
+	@cd libs/MLX42 && cmake --build build -j4
 
-$(OBJ)/%.o: $(SRC)/%.c
-	@$(eval COUNT=$(shell expr $(COUNT) + 1))
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@printf "$(GREEN)$(LIBNAME) $(COMP) %d%%\r$(RESET)" $$(echo $$(($(COUNT) * 100 / $(words $(CFILES)))))
+$(NAME): $(OBJECTS)
+	@printf "\n$(CYAN)Creating $(NAME)$(RESET)\n\n"
+	@$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MLX) -o $(NAME) $(INCLUDES) $(MFLAGS)
+
+$(OBJECTS): $(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@printf "$(GREEN)Compiling $(notdir $(<))$(RESET)\n"
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+
+$(OBJ_PATH):
+	@mkdir -p $(OBJ_PATH)
 
 clean:
-	@$(MAKE) fclean -sC $(LIBFT_PATH)
-	@$(RM) -rf $(OBJ)/
-	@$(SLEEP)
-	@printf "$(RED)$(CLEAN)$(RESET)\n"
+	@rm -f $(OBJECTS) -r $(OBJ_PATH)
+	@make -C $(LIBFT_PATH) clean --no-print-directory
+	@cd libs/MLX42 && cmake --build build --target clean
 
 fclean: clean
-	$(call eraseBins)
-	@$(SLEEP)
-	@printf "$(RED)$(FCLEAN)$(RESET)\n"
+	@rm -rf $(NAME)
+	@make -C $(LIBFT_PATH) fclean --no-print-directory
+	@cd libs/MLX42 && cmake --build build --target clean
 
-re: fclean all
+re: fclean
+	@make all --no-print-directory
 
-bonus:
-	@make WITH_BONUS=TRUE --no-print-directory
-
-debbug:
-	@make WITH_DEBBUG=TRUE --no-print-directory
-
-valgrind:
-		valgrind --leak-check=full \
-         --show-leak-kinds=all \
-         --track-origins=yes \
-         --verbose \
-         --log-file=src/temp/valgrind-out.txt --suppressions=src/temp/sup.sup \
-          -s ./$(NAME) src/temp/ampulheta.ber
-
-.PHONY: all bonus clean fclean re debbug valgrind
+.PHONY: all clean fclean re libft

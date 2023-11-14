@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 12:20:47 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/13 19:41:19 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:51:46 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/includes_and_defines_so_long.h"
+#include "../includes/so_long.h"
 
 void	verify_exit_enimy(t_sl *sl, int px, int py)
 {
@@ -21,13 +21,13 @@ void	verify_exit_enimy(t_sl *sl, int px, int py)
 		&& py == sl->image[3].image->instances[0].y)
 	{
 		if (sl->recurses.collectibles == 0)
-			mlx_error_sl("Obrigado por jogar!\nDev:Phenriq2", sl);
+			mlx_error_sl("Thank you for playing!\nDev:Phenriq2", sl);
 	}
 	while (i >= 0)
 	{
 		if (px == sl->image[4].image->instances[i].x
 			&& py == sl->image[4].image->instances[i].y)
-			mlx_error_sl("Voce perdeu!!\nObrigado por jogar!\
+			mlx_error_sl("You Lose!!\nThank you for playing!\
 			\nDev:Phenriq2", sl);
 		i--;
 	}
@@ -55,6 +55,8 @@ void	verify_collectable(t_sl *sl, int px, int py)
 		}
 		i++;
 	}
+	if (sl->recurses.collectibles == 0)
+		sl->image[3].image->instances[0].enabled = 1;
 	verify_exit_enimy(sl, px, py);
 }
 
@@ -80,6 +82,7 @@ int	verify_content(t_sl *sl, int x, int y)
 			return (1);
 		i++;
 	}
+	miniprintf("Moves:%d\n", ++sl->vars.hook);
 	verify_collectable(sl, px, py);
 	return (0);
 }

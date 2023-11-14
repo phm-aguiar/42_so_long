@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:33:26 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/13 20:03:24 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:32:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/includes_and_defines_so_long.h"
+#include "../includes/so_long.h"
 
 void	check_if_matrix_is_rectangle(t_sl *sl)
 {

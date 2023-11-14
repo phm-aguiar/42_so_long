@@ -34,7 +34,7 @@ $(NAME): $(OBJS)
 	@ar rcs $(NAME) $?
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 	@printf "$(GREEN)Compiling $<$(RESET)\n"
 
 clean:
@@ -46,4 +46,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean re fclean bonus
+.PHONY: all clean re fclean

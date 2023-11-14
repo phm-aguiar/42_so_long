@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:14:25 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/11/13 20:03:38 by phenriq2         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:32:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/includes_and_defines_so_long.h"
+#include "../includes/so_long.h"
 
 static void	counter_members(t_sl *sl, char c, int *counter)
 {
@@ -72,10 +72,7 @@ void	ft_error(char *str, t_sl *sl, int choise)
 		perror("");
 	}
 	if (sl->map_file.map)
-	{
-		printf("map is not null\n");
 		ft_matrixdel(sl->map_file.map);
-	}
 	exit(0);
 }
 
